@@ -44,7 +44,7 @@ import java.util.List;
  * https://blog.csdn.net/csdn576038874/article/details/79308391
  * 如何一步一步提交代码到jcenter上
  */
-public class MaterialSearchView extends FrameLayout implements Filter.FilterListener {
+public class MDSearchView extends FrameLayout implements Filter.FilterListener {
     public static final int REQUEST_VOICE = 9999;
 
     private MenuItem mMenuItem;
@@ -80,15 +80,15 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
 
     private Context mContext;
 
-    public MaterialSearchView(Context context) {
+    public MDSearchView(Context context) {
         this(context, null);
     }
 
-    public MaterialSearchView(Context context, AttributeSet attrs) {
+    public MDSearchView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MaterialSearchView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MDSearchView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs);
 
         mContext = context;
@@ -99,43 +99,43 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
     }
 
     private void initStyle(AttributeSet attrs, int defStyleAttr) {
-        TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.MaterialSearchView, defStyleAttr, 0);
+        TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.MDSearchView, defStyleAttr, 0);
 
         if (a != null) {
-            if (a.hasValue(R.styleable.MaterialSearchView_searchBackground)) {
-                setBackground(a.getDrawable(R.styleable.MaterialSearchView_searchBackground));
+            if (a.hasValue(R.styleable.MDSearchView_searchBackground)) {
+                setBackground(a.getDrawable(R.styleable.MDSearchView_searchBackground));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_android_textColor)) {
-                setTextColor(a.getColor(R.styleable.MaterialSearchView_android_textColor, 0));
+            if (a.hasValue(R.styleable.MDSearchView_android_textColor)) {
+                setTextColor(a.getColor(R.styleable.MDSearchView_android_textColor, 0));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_android_textColorHint)) {
-                setHintTextColor(a.getColor(R.styleable.MaterialSearchView_android_textColorHint, 0));
+            if (a.hasValue(R.styleable.MDSearchView_android_textColorHint)) {
+                setHintTextColor(a.getColor(R.styleable.MDSearchView_android_textColorHint, 0));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_android_hint)) {
-                setHint(a.getString(R.styleable.MaterialSearchView_android_hint));
+            if (a.hasValue(R.styleable.MDSearchView_android_hint)) {
+                setHint(a.getString(R.styleable.MDSearchView_android_hint));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_searchVoiceIcon)) {
-                setVoiceIcon(a.getDrawable(R.styleable.MaterialSearchView_searchVoiceIcon));
+            if (a.hasValue(R.styleable.MDSearchView_searchVoiceIcon)) {
+                setVoiceIcon(a.getDrawable(R.styleable.MDSearchView_searchVoiceIcon));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_searchCloseIcon)) {
-                setCloseIcon(a.getDrawable(R.styleable.MaterialSearchView_searchCloseIcon));
+            if (a.hasValue(R.styleable.MDSearchView_searchCloseIcon)) {
+                setCloseIcon(a.getDrawable(R.styleable.MDSearchView_searchCloseIcon));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_searchBackIcon)) {
-                setBackIcon(a.getDrawable(R.styleable.MaterialSearchView_searchBackIcon));
+            if (a.hasValue(R.styleable.MDSearchView_searchBackIcon)) {
+                setBackIcon(a.getDrawable(R.styleable.MDSearchView_searchBackIcon));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_searchSuggestionBackground)) {
-                setSuggestionBackground(a.getDrawable(R.styleable.MaterialSearchView_searchSuggestionBackground));
+            if (a.hasValue(R.styleable.MDSearchView_searchSuggestionBackground)) {
+                setSuggestionBackground(a.getDrawable(R.styleable.MDSearchView_searchSuggestionBackground));
             }
 
-            if (a.hasValue(R.styleable.MaterialSearchView_searchSuggestionIcon)) {
-                setSuggestionIcon(a.getDrawable(R.styleable.MaterialSearchView_searchSuggestionIcon));
+            if (a.hasValue(R.styleable.MDSearchView_searchSuggestionIcon)) {
+                setSuggestionIcon(a.getDrawable(R.styleable.MDSearchView_searchSuggestionIcon));
             }
 
             a.recycle();
@@ -189,7 +189,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mUserQuery = s;
                 startFilter(s);
-                MaterialSearchView.this.onTextChanged(s);
+                MDSearchView.this.onTextChanged(s);
             }
 
             @Override
@@ -211,12 +211,13 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
 
     private void startFilter(CharSequence s) {
         if (mAdapter != null && mAdapter instanceof Filterable) {
-            ((Filterable) mAdapter).getFilter().filter(s, MaterialSearchView.this);
+            ((Filterable) mAdapter).getFilter().filter(s, MDSearchView.this);
         }
     }
 
     private final OnClickListener mOnClickListener = new OnClickListener() {
 
+        @Override
         public void onClick(View v) {
             if (v == mBackBtn) {
                 closeSearch();
@@ -353,7 +354,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
             f.setAccessible(true);
             f.set(mSearchSrcTextView, drawable);
         } catch (Exception ignored) {
-            Log.e("MaterialSearchView", ignored.toString());
+            Log.e("MDSearchView", ignored.toString());
         }
     }
 
